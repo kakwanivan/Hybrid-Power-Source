@@ -135,3 +135,133 @@ SOC_ref = SOC + (ChargePower_ref - DischargePower_ref)/capacity;
 SOC_ref = max(SOC_min, min(SOC_ref, SOC_max));
 
 end
+
+
+
+Another Prototype
+
+import serial
+
+ser = serial.Serial('/dev/ttyUSB0', 9600)  # replace with the serial port and baud rate of your device
+
+while True:
+    data = ser.readline().decode('utf-8').rstrip()  # read the data from the serial port and decode it
+    # assuming the data is in the format "voltage, current"
+    voltage, current = data.split(',')
+    voltage = float(voltage)
+    current = float(current)
+    
+    # insert your control algorithm here
+    # for example, adjust the charging and discharging profiles based on the voltage and current readings
+    
+    print(f"Voltage: {voltage:.2f} V, Current: {current:.2f} A")
+batteries = ['sodium-ion', 'aluminum-ion', 'solid state']
+supercapacitors = ['type A', 'type B', 'type C']
+
+def check_compatibility(battery_type, supercap_type):
+    if battery_type in batteries and supercap_type in supercapacitors:
+        return True
+    else:
+        return False
+
+# Example usage
+if check_compatibility('sodium-ion', 'type A'):
+    print('Battery and supercapacitor are compatible')
+else:
+    print('Battery and supercapacitor are not compatible')
+import time
+
+# Define the function to get the state of charge (SOC)
+def get_SOC():
+    # Placeholder code to get the SOC from the hybrid energy storage system
+    SOC = 80  # Example value
+    return SOC
+
+# Define the function to get the state of health (SOH)
+def get_SOH():
+    # Placeholder code to get the SOH from the hybrid energy storage system
+    SOH = 90  # Example value
+    return SOH
+
+# Loop to continuously display the SOC and SOH
+while True:
+    # Get the SOC and SOH values
+    SOC = get_SOC()
+    SOH = get_SOH()
+    
+    # Display the SOC and SOH values
+    print("State of Charge (SOC): {}%".format(SOC))
+    print("State of Health (SOH): {}%".format(SOH))
+    
+    # Wait for 1 second before getting the next values
+    time.sleep(1)
+# Assume we have a hybrid energy storage system with a battery and supercapacitor
+# We will set the charging and discharging profiles for the battery
+
+# Set the charging profile for the battery
+battery_charging_profile = {
+    "voltage_limit": 4.2,  # Maximum voltage limit for the battery during charging
+    "current_limit": 10,  # Maximum current limit for the battery during charging
+    "charge_time": 2,  # Amount of time the battery will be charged
+}
+
+# Set the discharging profile for the battery
+battery_discharging_profile = {
+    "voltage_limit": 3.2,  # Minimum voltage limit for the battery during discharging
+    "current_limit": 15,  # Maximum current limit for the battery during discharging
+    "discharge_time": 4,  # Amount of time the battery will be discharged
+}
+
+# Use the profiles to charge and discharge the battery
+def charge_battery():
+    # Code to charge the battery according to the charging profile
+
+def discharge_battery():
+    # Code to discharge the battery according to the discharging profile
+import numpy as np
+from sklearn.linear_model import LinearRegression
+
+# Assume battery data is already collected and stored in arrays
+
+# Use linear regression to predict battery behavior and estimate remaining life
+X = np.array([charging_time, discharging_time, temperature, age]).T
+y = np.array(battery_health)
+model = LinearRegression()
+model.fit(X, y)
+
+# Use the model to predict battery behavior and estimate remaining life
+prediction = model.predict([[new_charging_time, new_discharging_time, new_temperature, new_age]])
+import pandas as pd
+
+# Assume energy consumption data is already collected and stored in a dataframe
+
+# Use time series forecasting to predict energy demand and optimize supply
+model = ARIMA(df['energy_consumption'], order=(1, 1, 1))
+model_fit = model.fit()
+forecast = model_fit.forecast(steps=24)
+
+# Use the forecast to optimize energy supply and balance demand
+supply = optimize_supply(forecast)
+import pandas as pd
+from sklearn.preprocessing import StandardScaler
+from sklearn.decomposition import PCA
+from sklearn.cluster import KMeans
+
+# Assume energy consumption and production data is already collected and stored in dataframes
+
+# Preprocess the data using scaling and principal component analysis (PCA)
+scaler = StandardScaler()
+scaled_data = scaler.fit_transform(pd.concat([df_consumption, df_production], axis=1))
+pca = PCA(n_components=2)
+pca_data = pca.fit_transform(scaled_data)
+
+# Use K-means clustering to group similar data points and identify patterns
+kmeans = KMeans(n_clusters=3, random_state=0)
+kmeans.fit(pca_data)
+labels = kmeans.predict(pca_data)
+
+# Use the clustering results to improve productivity, safety, sustainability, and reduce costs
+improve_productivity(labels)
+improve_safety(labels)
+improve_sustainability(labels)
+reduce_costs(labels)
